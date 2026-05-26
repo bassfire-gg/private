@@ -19,10 +19,13 @@ services:
     ports:
       - "9092:9092"
 
-  mysql:
-    image: mysql:8.0
+  postgres:
+    image: postgres:16
     environment:
-      MYSQL_ROOT_PASSWORD: password
-      MYSQL_DATABASE: user_service
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: user_service
     ports:
-      - "3306:3306"
+      - "5432:5432"
+    volumes:
+      - ./docker/postgres/init:/docker-entrypoint-initdb.d
