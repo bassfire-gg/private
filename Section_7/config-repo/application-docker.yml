@@ -1,0 +1,11 @@
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka-server:8761/eureka/
+  instance:
+    prefer-ip-address: false
+    hostname: ${spring.application.name}
+
+spring:
+  kafka:
+    bootstrap-servers: kafka:29092

@@ -1,0 +1,37 @@
+server:
+  port: 8081
+
+spring:
+  kafka:
+    consumer:
+      group-id: notification-service-group
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring.json.trusted.packages: "*"
+        spring.json.value.default.type: org.notification_service.event.UserEvent
+  mail:
+    host: localhost
+    port: 1025
+    username: notification@localhost
+    password: ""
+    properties:
+      mail.smtp.auth: false
+      mail.smtp.starttls.enable: false
+  datasource:
+    url: jdbc:postgresql://localhost:5432/notifications_db
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
+app:
+  kafka:
+    user-events-topic: user-events
